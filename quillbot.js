@@ -9,6 +9,8 @@
 // @run-at       document-start
 // @grant        none
 // @license      none
+// @downloadURL  https://update.greasyfork.org/scripts/465276/Quillbot%20Premium%20Unlocker.user.js
+// @updateURL    https://update.greasyfork.org/scripts/465276/Quillbot%20Premium%20Unlocker.meta.js
 // ==/UserScript==
 /* global ajaxHooker*/
 (function() {
