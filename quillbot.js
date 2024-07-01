@@ -14,19 +14,24 @@
 // @updateURL    https://update.greasyfork.org/scripts/465276/Quillbot%20Premium%20Unlocker.meta.js
 // ==/UserScript==
 /* global ajaxHooker */
-(
-    // Quillbot Premium Unlocker Code
-    ajaxHooker.hook(request => {
+(function() {
+    'use strict';
+
+    // Function to unlock premium features
+    const unlockPremium = (request) => {
         if (request.url.endsWith('get-account-details')) {
-            request.response = res => {
+            request.response = (res) => {
                 const json = JSON.parse(res.responseText);
-                const a = "data" in json ? json.data : json;
-                a.profile.accepted_premium_modes_tnc = true;
-                a.profile.premium = true;
-                res.responseText = JSON.stringify("data" in json ? (json.data = a, json) : a);
+                const accountData = "data" in json ? json.data : json;
+                accountData.profile.accepted_premium_modes_tnc = true;
+                accountData.profile.premium = true;
+                res.responseText = JSON.stringify("data" in json ? { ...json, data: accountData } : accountData);
             };
         }
-    });
+    };
+
+    // Hook the request to unlock premium
+    ajaxHooker.hook(unlockPremium);
 
     // Function to create and append the button
     const createRedirectButton = () => {
