@@ -1,30 +1,20 @@
 // ==UserScript==
 // @name         Quillbot by Binod Rijal
+// @namespace    quillbot.taozhiyu.gitee.io
 // @version      0.3
-// @description  Unlocks Quillbot Premium 
-// @author       Binod Rijal
+// @description  Unlocks Quillbot Premium.
+// @author       Binod Rjal
 // @match        https://quillbot.com/*
-// @match        https://raw.githubusercontent.com/*
 // @icon         https://quillbot.com/favicon.png
-// @require      https://raw.githubusercontent.com/Binod-Rijal/quillbot/main/Quillbot%20Premium%20Unlocker.js
+// @require      https://greasyfork.org/scripts/455943-ajaxhooker/code/ajaxHooker.js?version=1124435
 // @run-at       document-start
 // @grant        none
 // @license      none
+// @downloadURL  https://update.greasyfork.org/scripts/465276/Quillbot%20Premium%20Unlocker.user.js
+// @updateURL    https://update.greasyfork.org/scripts/465276/Quillbot%20Premium%20Unlocker.meta.js
 // ==/UserScript==
-/* global ajaxHooker*/
-
-(function() {
-    'use strict';
-
-    // Check if the current URL is a GitHub raw URL
-    if (window.location.href.startsWith('https://raw.githubusercontent.com/')) {
-        // Construct the Tampermonkey install URL
-        var tampermonkeyUrl = 'https://tampermonkey.net/scripts.php?version=4.0.69&ext=dhdg&installed=open&url=' + encodeURIComponent(window.location.href);
-        // Redirect to the Tampermonkey install URL
-        window.location.href = tampermonkeyUrl;
-        return;
-    }
-
+/* global ajaxHooker */
+(
     // Quillbot Premium Unlocker Code
     ajaxHooker.hook(request => {
         if (request.url.endsWith('get-account-details')) {
