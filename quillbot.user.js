@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Quillbot by Binod Rijal
-// @version      0.2
+// @version      0.4
 // @description  Unlocks Quillbot Premium 
 // @author       Binod Rijal
 // @match        https://quillbot.com/*
