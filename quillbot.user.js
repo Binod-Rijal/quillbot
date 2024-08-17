@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Quillbot by Binod Rijal
 // @version      0.4
-// @description  Unlocks Quillbot Premium 
+// @description  Unlocks Quillbot Premium. Created for Educational Purpose Only
 // @author       Binod Rijal
 // @match        https://quillbot.com/*
 // @icon         https://quillbot.com/favicon.png
@@ -13,7 +13,6 @@
 /* global ajaxHooker*/
 (function() {
     'use strict';
-    // How's it going filthy code looker
     ajaxHooker.hook(request => {
         if (request.url.endsWith('get-account-details')) {
             request.response = res => {
@@ -25,7 +24,6 @@
             };
         }
     });
-     // Function to create and append the button
     const createRedirectButton = () => {
         const button = document.createElement('button');
         Object.assign(button.style, {
@@ -47,7 +45,5 @@
         });
         document.body.appendChild(button);
     };
-
-    // Wait until the DOM is fully loaded before creating the button
     window.addEventListener('load', createRedirectButton);
 })();
