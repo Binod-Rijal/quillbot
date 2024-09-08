@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Quillbot by Binod Rijal
-// @version      0.4
-// @description  Unlocks Quillbot Premium. Created for Educational Purpose Only
-// @author       Binod Rijal
+// @version      3.0
+// @description  Unlocks Quillbot Premium. For Educational Purpose Only
+// @author       longkidkoolstar
 // @match        https://quillbot.com/*
 // @icon         https://quillbot.com/favicon.png
 // @require      https://raw.githubusercontent.com/Binod-Rijal/quillbot/main/Quillbot%20Premium%20Unlocker.js
@@ -10,40 +10,39 @@
 // @grant        none
 // @license      none
 // ==/UserScript==
-/* global ajaxHooker*/
+
 (function() {
     'use strict';
+
+    // How's it going filthy code looker
     ajaxHooker.hook(request => {
         if (request.url.endsWith('get-account-details')) {
             request.response = res => {
-                const json=JSON.parse(res.responseText);
-                const a="data" in json?json.data:json;
-                a.profile.accepted_premium_modes_tnc=true;
-                a.profile.premium=true;
-                res.responseText=JSON.stringify("data" in json?(json.data=a,json):a);
+                const json = JSON.parse(res.responseText);
+                const a = "data" in json ? json.data : json;
+                a.profile.accepted_premium_modes_tnc = true;
+                a.profile.premium = true;
+                res.responseText = JSON.stringify("data" in json ? (json.data = a, json) : a);
             };
         }
     });
-    const createRedirectButton = () => {
-        const button = document.createElement('button');
-        Object.assign(button.style, {
-            position: 'fixed',
-            bottom: '10px',
-            right: '10px',
-            zIndex: '1000',
-            backgroundColor: '#000',
-            color: '#FFF',
-            border: 'none',
-            padding: '5px 10px',
-            cursor: 'pointer',
-            borderRadius: '5px',
-            fontSize: '12px'
-        });
-        button.textContent = 'Created by Binod Rijal';
-        button.addEventListener('click', () => {
-            window.location.href = 'http://binod.rf.gd';
-        });
-        document.body.appendChild(button);
-    };
-    window.addEventListener('load', createRedirectButton);
+
+    // Add the text and link to bottom right corner
+    const linkText = document.createElement('div');
+    linkText.textContent = 'Created by Binod Rijal';
+    linkText.style.position = 'fixed';
+    linkText.style.bottom = '10px';
+    linkText.style.right = '10px';
+    linkText.style.color = 'white';
+    linkText.style.backgroundColor = 'black';
+    linkText.style.padding = '5px';
+    linkText.style.borderRadius = '5px';
+    linkText.style.cursor = 'pointer';
+    linkText.style.zIndex = '9999';
+    document.body.appendChild(linkText);
+
+    // Redirect when the text is clicked
+    linkText.addEventListener('click', () => {
+        window.location.href = 'https://binod.rf.gd';
+    });
 })();
